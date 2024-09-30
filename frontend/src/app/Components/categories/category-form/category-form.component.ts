@@ -1,11 +1,13 @@
+/* eslint-disable @typescript-eslint/no-inferrable-types */
 import { Component, OnInit } from '@angular/core';
 import {
   UntypedFormBuilder,
   UntypedFormControl,
   UntypedFormGroup,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { marker as _ } from '@biesbjerg/ngx-translate-extract-marker';
 import { CategoryDTO } from 'src/app/Models/category.dto';
 import { CategoryService } from 'src/app/Services/category.service';
 import { LocalStorageService } from 'src/app/Services/local-storage.service';
@@ -14,7 +16,7 @@ import { SharedService } from 'src/app/Services/shared.service';
 @Component({
   selector: 'app-category-form',
   templateUrl: './category-form.component.html',
-  styleUrls: ['./category-form.component.scss'],
+  styleUrls: ['./category-form.component.scss']
 })
 export class CategoryFormComponent implements OnInit {
   category: CategoryDTO;
@@ -24,6 +26,18 @@ export class CategoryFormComponent implements OnInit {
 
   categoryForm: UntypedFormGroup;
   isValidForm: boolean | null;
+
+  msgCategoryForm = _('Category Form');
+  msgCategoryFormTitle = _('Title');
+  msgCategoryFormDescription = _('Description');
+  msgCategoryFormCssColor = _('Css color');
+  msgCategoryFormSAVE = _('SAVE');
+  msgCategoryFormError001 = _('Title is required');
+  msgCategoryFormError002 = _('Title can be max 55 characters long');
+  msgCategoryFormError003 = _('Description is required');
+  msgCategoryFormError004 = _('Description can be max 255 characters long');
+  msgCategoryFormError005 = _('Css color is required');
+  msgCategoryFormError006 = _('Css color can be max 7 characters long');
 
   private isUpdateMode: boolean;
   private validRequest: boolean;
@@ -45,23 +59,23 @@ export class CategoryFormComponent implements OnInit {
 
     this.title = new UntypedFormControl(this.category.title, [
       Validators.required,
-      Validators.maxLength(55),
+      Validators.maxLength(55)
     ]);
 
     this.description = new UntypedFormControl(this.category.description, [
       Validators.required,
-      Validators.maxLength(255),
+      Validators.maxLength(255)
     ]);
 
     this.css_color = new UntypedFormControl(this.category.css_color, [
       Validators.required,
-      Validators.maxLength(7),
+      Validators.maxLength(7)
     ]);
 
     this.categoryForm = this.formBuilder.group({
       title: this.title,
       description: this.description,
-      css_color: this.css_color,
+      css_color: this.css_color
     });
   }
 
@@ -85,7 +99,7 @@ export class CategoryFormComponent implements OnInit {
         this.categoryForm = this.formBuilder.group({
           title: this.title,
           description: this.description,
-          css_color: this.css_color,
+          css_color: this.css_color
         });
       } catch (error: any) {
         errorResponse = error.error;
@@ -164,6 +178,10 @@ export class CategoryFormComponent implements OnInit {
     this.isValidForm = true;
     this.category = this.categoryForm.value;
 
-    // TODO 10
+    if (this.isUpdateMode) {
+      this.validRequest = await this.editCategory();
+    } else {
+      this.validRequest = await this.createCategory();
+    }
   }
 }

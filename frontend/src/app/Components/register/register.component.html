@@ -2,7 +2,127 @@
   <p id="registerFeedback"></p>
 </div>
 <div>
-  <h1>Register</h1>
+  <h1>{{ msgRegister | translate }}</h1>
 
-  <!-- TODO 18 -->
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <div class="field">
+      <label for="name">{{ msgRegisterName | translate }}: </label>
+      <input type="text" [formControl]="name" />
+      <div
+        *ngIf="name.errors && isValidForm !== null && !isValidForm"
+        [ngClass]="'error'"
+      >
+        <div *ngIf="name.errors.required">
+          {{ msgRegisterError009 | translate }}
+        </div>
+        <div *ngIf="name.errors.minlength">
+          {{ msgRegisterError001 | translate }}
+        </div>
+        <div *ngIf="name.errors.maxlength">
+          {{ msgRegisterError002 | translate }}
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="surname_1">{{ msgRegisterSurname1 | translate }}: </label>
+      <input type="text" [formControl]="surname_1" />
+      <div
+        *ngIf="surname_1.errors && isValidForm !== null && !isValidForm"
+        [ngClass]="'error'"
+      >
+        <div *ngIf="surname_1.errors.required">
+          {{ msgRegisterError010 | translate }}
+        </div>
+        <div *ngIf="surname_1.errors.minlength">
+          {{ msgRegisterError003 | translate }}
+        </div>
+        <div *ngIf="surname_1.errors.maxlength">
+          {{ msgRegisterError004 | translate }}
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="surname_2">{{ msgRegisterSurname2 | translate }}: </label>
+      <input type="text" [formControl]="surname_2" />
+      <div
+        *ngIf="surname_2.errors && isValidForm !== null && !isValidForm"
+        [ngClass]="'error'"
+      >
+        <div *ngIf="surname_2.errors.minlength">
+          {{ msgRegisterError005 | translate }}
+        </div>
+        <div *ngIf="surname_2.errors.maxlength">
+          {{ msgRegisterError006 | translate }}
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="alias">{{ msgRegisterAlias | translate }}: </label>
+      <input type="text" [formControl]="alias" />
+      <div
+        *ngIf="alias.errors && isValidForm !== null && !isValidForm"
+        [ngClass]="'error'"
+      >
+        <div *ngIf="alias.errors.required">
+          {{ msgRegisterError011 | translate }}
+        </div>
+        <div *ngIf="alias.errors.minlength">
+          {{ msgRegisterError007 | translate }}
+        </div>
+        <div *ngIf="alias.errors.maxlength">
+          {{ msgRegisterError008 | translate }}
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="birth_date">{{ msgRegisterBirthDate | translate }}: </label>
+      <input type="date" [formControl]="birth_date" />
+      <div
+        *ngIf="birth_date.errors && isValidForm !== null && !isValidForm"
+        [ngClass]="'error'"
+      >
+        <div *ngIf="birth_date.errors.required">
+          {{ msgRegisterError012 | translate }}
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="email">{{ msgRegisterEmail | translate }}: </label>
+      <input type="email" [formControl]="email" />
+      <div
+        *ngIf="email.errors && isValidForm !== null && !isValidForm"
+        [ngClass]="'error'"
+      >
+        <div *ngIf="email.errors.required">
+          {{ msgRegisterError014 | translate }}
+        </div>
+        <div *ngIf="email.errors.email">
+          {{ msgRegisterError013 | translate }}
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="password">{{ msgRegisterPassword | translate }}: </label>
+      <input type="password" [formControl]="password" />
+      <div
+        *ngIf="password.errors && isValidForm !== null && !isValidForm"
+        [ngClass]="'error'"
+      >
+        <div *ngIf="password.errors.required">
+          {{ msgRegisterError015 | translate }}
+        </div>
+        <div *ngIf="password.errors.minlength">
+          {{ msgRegisterError016 | translate }}
+        </div>
+      </div>
+    </div>
+
+    <button type="submit">{{ msgRegisterRegister | translate }}</button>
+  </form>
 </div>

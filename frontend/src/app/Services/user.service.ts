@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { UserDTO } from '../Models/user.dto';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class UserService {
   private urlBlogUocApi: string;

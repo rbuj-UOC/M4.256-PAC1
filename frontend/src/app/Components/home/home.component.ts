@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { marker as _ } from '@biesbjerg/ngx-translate-extract-marker';
 import { HeaderMenus } from 'src/app/Models/header-menus.dto';
 import { PostDTO } from 'src/app/Models/post.dto';
 import { HeaderMenusService } from 'src/app/Services/header-menus.service';
@@ -10,11 +11,21 @@ import { SharedService } from 'src/app/Services/shared.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
   posts!: PostDTO[];
   showButtons: boolean;
+
+  msgHomeTitle = _('Title');
+  msgHomeDescription = _('Description');
+  msgHomeLikes = _('Likes');
+  msgHomeDislikes = _('Dislikes');
+  msgHomePublicationDate = _('Publication Date');
+  msgHomePublishedBy = _('Published By');
+  msgHomeLike = _('Like');
+  msgHomeDislike = _('Dislike');
+
   constructor(
     private postService: PostService,
     private localStorageService: LocalStorageService,
@@ -36,7 +47,15 @@ export class HomeComponent {
     );
   }
   private async loadPosts(): Promise<void> {
-    // TODO 2
+    let errorResponse: any;
+    const userId = this.localStorageService.get('user_id');
+    this.showButtons = userId !== null;
+    try {
+      this.posts = await this.postService.getPosts();
+    } catch (error: any) {
+      errorResponse = error.error;
+      this.sharedService.errorLog(errorResponse);
+    }
   }
 
   async like(postId: string): Promise<void> {

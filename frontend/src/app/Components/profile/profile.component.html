@@ -2,7 +2,127 @@
   <p id="profileFeedback"></p>
 </div>
 <div>
-  <h1>Profile</h1>
+  <h1>{{ msgProfile | translate }}</h1>
 
-  <!-- TODO 6 -->
+  <form [formGroup]="profileForm" (ngSubmit)="updateUser()">
+    <div class="field">
+      <label for="name">{{ msgProfileName | translate }}: </label>
+      <input type="text" [formControl]="name" />
+      <div
+        *ngIf="name.errors && isValidForm !== null && !isValidForm"
+        [ngClass]="'error'"
+      >
+        <div *ngIf="name.errors.required">
+          {{ msgProfileError001 | translate }}
+        </div>
+        <div *ngIf="name.errors.minlength">
+          {{ msgProfileError002 | translate }}
+        </div>
+        <div *ngIf="name.errors.maxlength">
+          {{ msgProfileError003 | translate }}
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="surname_1">{{ msgProfileSurname1 | translate }}: </label>
+      <input type="text" [formControl]="surname_1" />
+      <div
+        *ngIf="surname_1.errors && isValidForm !== null && !isValidForm"
+        [ngClass]="'error'"
+      >
+        <div *ngIf="surname_1.errors.required">
+          {{ msgProfileError004 | translate }}
+        </div>
+        <div *ngIf="surname_1.errors.minlength">
+          {{ msgProfileError005 | translate }}
+        </div>
+        <div *ngIf="surname_1.errors.maxlength">
+          {{ msgProfileError006 | translate }}
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="surname_2">{{ msgProfileSurname2 | translate }}: </label>
+      <input type="text" [formControl]="surname_2" />
+      <div
+        *ngIf="surname_2.errors && isValidForm !== null && !isValidForm"
+        [ngClass]="'error'"
+      >
+        <div *ngIf="surname_2.errors.minlength">
+          {{ msgProfileError007 | translate }}
+        </div>
+        <div *ngIf="surname_2.errors.maxlength">
+          {{ msgProfileError008 | translate }}
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="alias">{{ msgProfileAlias | translate }}: </label>
+      <input type="text" [formControl]="alias" />
+      <div
+        *ngIf="alias.errors && isValidForm !== null && !isValidForm"
+        [ngClass]="'error'"
+      >
+        <div *ngIf="alias.errors.required">
+          {{ msgProfileError009 | translate }}
+        </div>
+        <div *ngIf="alias.errors.minlength">
+          {{ msgProfileError010 | translate }}
+        </div>
+        <div *ngIf="alias.errors.maxlength">
+          {{ msgProfileError011 | translate }}
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="birth_date">{{ msgProfileBirthDate | translate }}: </label>
+      <input type="date" [formControl]="birth_date" />
+      <div
+        *ngIf="birth_date.errors && isValidForm !== null && !isValidForm"
+        [ngClass]="'error'"
+      >
+        <div *ngIf="birth_date.errors.required">
+          {{ msgProfileError012 | translate }}
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="email">{{ msgProfileEmail | translate }}: </label>
+      <input type="email" [formControl]="email" />
+      <div
+        *ngIf="email.errors && isValidForm !== null && !isValidForm"
+        [ngClass]="'error'"
+      >
+        <div *ngIf="email.errors.required">
+          {{ msgProfileError013 | translate }}
+        </div>
+        <div *ngIf="email.errors.email">
+          {{ msgProfileError014 | translate }}
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="password">{{ msgProfilePassword | translate }}: </label>
+      <input type="password" [formControl]="password" />
+      <div
+        *ngIf="password.errors && isValidForm !== null && !isValidForm"
+        [ngClass]="'error'"
+      >
+        <div *ngIf="password.errors.required">
+          {{ msgProfileError015 | translate }}
+        </div>
+        <div *ngIf="password.errors.minlength">
+          {{ msgProfileError016 | translate }}
+        </div>
+      </div>
+    </div>
+
+    <button type="submit">{{ msgProfileUpdate | translate }}</button>
+  </form>
 </div>

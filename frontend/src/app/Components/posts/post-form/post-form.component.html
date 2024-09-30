@@ -2,5 +2,79 @@
   <p id="postFeedback"></p>
 </div>
 <div>
-  <!-- TODO 14 -->
+  <h1>{{ msgPostForm | translate }}</h1>
+  <form *ngIf="postForm" [formGroup]="postForm" (ngSubmit)="savePost()">
+    <div class="field">
+      <label for="title">{{ msgPostFormTitle | translate }}:</label>
+      <input type="text" [formControl]="title" />
+
+      <div *ngIf="title.errors">
+        <div
+          *ngIf="title.errors && isValidForm !== null && !isValidForm"
+          [ngClass]="'error'"
+        >
+          <div *ngIf="title.errors.required">
+            {{ msgPostFormError001 | translate }}
+          </div>
+
+          <div *ngIf="title.errors.maxlength">
+            {{ msgPostFormError002 | translate }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="description"
+        >{{ msgPostFormDescription | translate }}:
+      </label>
+      <input type="text" [formControl]="description" />
+
+      <div *ngIf="description.errors">
+        <div
+          *ngIf="description.errors && isValidForm !== null && !isValidForm"
+          [ngClass]="'error'"
+        >
+          <div *ngIf="description.errors.required">
+            {{ msgPostFormError003 | translate }}
+          </div>
+
+          <div *ngIf="description.errors.maxlength">
+            {{ msgPostFormError004 | translate }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="publication_date"
+        >{{ msgPostFormPublicationDate | translate }}:
+      </label>
+      <input type="date" [formControl]="publication_date" />
+
+      <div *ngIf="publication_date.errors">
+        <div
+          *ngIf="
+            publication_date.errors && isValidForm !== null && !isValidForm
+          "
+          [ngClass]="'error'"
+        >
+          <div *ngIf="publication_date.errors.required">
+            {{ msgPostFormError005 | translate }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="categories">{{ msgPostFormCategories | translate }}: </label>
+      <select name="categories" [formControl]="categories" multiple>
+        <option *ngFor="let uc of user_categories" [value]="uc.categoryId">
+          {{ uc.title }}
+        </option>
+      </select>
+    </div>
+
+    <button type="submit">{{ msgPostFormSAVE | translate }}</button>
+  </form>
 </div>

@@ -2,14 +2,14 @@ import {
   HttpEvent,
   HttpHandler,
   HttpInterceptor,
-  HttpRequest,
+  HttpRequest
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthInterceptorService implements HttpInterceptor {
   access_token: string | null;
@@ -28,8 +28,8 @@ export class AuthInterceptorService implements HttpInterceptor {
         setHeaders: {
           'Content-Type': 'application/json; charset=utf-8',
           Accept: 'application/json',
-          Authorization: `Bearer ${this.access_token}`,
-        },
+          Authorization: `Bearer ${this.access_token}`
+        }
       });
     }
 

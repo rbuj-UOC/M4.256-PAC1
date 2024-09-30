@@ -7,7 +7,7 @@ interface deleteResponse {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class CategoryService {
   private urlBlogUocApi: string;

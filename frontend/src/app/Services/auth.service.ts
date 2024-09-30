@@ -8,7 +8,7 @@ interface AuthToken {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
   private urlBlogUocApi: string;

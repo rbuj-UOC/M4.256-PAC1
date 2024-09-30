@@ -1,0 +1,21 @@
+{
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=827846
+  "recommendations": [
+    "angular.ng-template",
+    "anseki.vscode-color",
+    "ChakrounAnas.turbo-console-log",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "EditorConfig.EditorConfig",
+    "esbenp.prettier-vscode",
+    "formulahendry.auto-rename-tag",
+    "HTMLHint.vscode-htmlhint",
+    "johnpapa.Angular2",
+    "kisstkondoros.vscode-codemetrics",
+    "naumovs.color-highlight",
+    "quicktype.quicktype",
+    "streetsidesoftware.code-spell-checker",
+    "streetsidesoftware.code-spell-checker-spanish",
+    "Zignd.html-css-class-completion"
+  ]
+}

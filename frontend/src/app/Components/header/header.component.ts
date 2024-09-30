@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { marker as _ } from '@biesbjerg/ngx-translate-extract-marker';
 import { HeaderMenus } from 'src/app/Models/header-menus.dto';
 import { HeaderMenusService } from 'src/app/Services/header-menus.service';
 import { LocalStorageService } from 'src/app/Services/local-storage.service';
@@ -7,11 +8,20 @@ import { LocalStorageService } from 'src/app/Services/local-storage.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
   showAuthSection: boolean;
   showNoAuthSection: boolean;
+
+  msgHeaderHome = _('Home');
+  msgHeaderDashboard = _('Dashboard');
+  msgHeaderAdminPosts = _('Admin posts');
+  msgHeaderAdminCategories = _('Admin categories');
+  msgHeaderProfile = _('Profile');
+  msgHeaderLogout = _('Logout');
+  msgHeaderRegister = _('Register');
+  msgHeaderLogin = _('Login');
 
   constructor(
     private router: Router,
@@ -58,6 +68,17 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(): void {
-    // TODO 15
+    this.localStorageService.remove('user_id');
+    this.localStorageService.remove('access_token');
+    const headerInfo = {
+      showAuthSection: false,
+      showNoAuthSection: true
+    } as HeaderMenus;
+    this.headerMenusService.headerManagement.next(headerInfo);
+    this.router.navigateByUrl('home');
+  }
+
+  dashboard(): void {
+    this.router.navigateByUrl('dashboard');
   }
 }

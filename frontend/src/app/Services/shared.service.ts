@@ -11,7 +11,7 @@ export interface ResponseError {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class SharedService {
   constructor() {}

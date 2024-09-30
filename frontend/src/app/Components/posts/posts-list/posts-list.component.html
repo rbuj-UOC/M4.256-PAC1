@@ -1,3 +1,33 @@
-<h2>Post List</h2>
+<h2>{{ msgPostList | translate }}</h2>
 
-<!-- TODO 11 -->
+<button (click)="createPost()">ADD</button>
+
+<table>
+  <thead>
+    <tr>
+      <th>{{ msgPostListID | translate }}</th>
+      <th>{{ msgPostListTITLE | translate }}</th>
+      <th>{{ msgPostListDESCRIPTION | translate }}</th>
+      <th>{{ msgPostListNUM_LIKES | translate }}</th>
+      <th>{{ msgPostListNUM_DISLIKES | translate }}</th>
+      <th>{{ msgPostListACTIONS | translate }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let post of posts">
+      <td>{{ post.postId }}</td>
+      <td>{{ post.title }}</td>
+      <td>{{ post.description }}</td>
+      <td>{{ post.num_likes }}</td>
+      <td>{{ post.num_dislikes }}</td>
+      <td>
+        <button (click)="updatePost(post.postId)">
+          {{ msgPostListUPDATE | translate }}
+        </button>
+        <button (click)="deletePost(post.postId)">
+          {{ msgPostListDELETE | translate }}
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
