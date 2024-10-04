@@ -6,14 +6,15 @@ import {
   UntypedFormBuilder,
   Validators
 } from '@angular/forms';
-import { marker as _ } from '@biesbjerg/ngx-translate-extract-marker';
-import { UserDTO } from 'src/app/Models/user.dto';
-import { LocalStorageService } from 'src/app/Services/local-storage.service';
-import { SharedService } from 'src/app/Services/shared.service';
-import { UserService } from 'src/app/Services/user.service';
+import { UserDTO } from '../../Models/user.dto';
+import { LocalStorageService } from '../../Services/local-storage.service';
+import { SharedService } from '../../Services/shared.service';
+import { UserService } from '../../Services/user.service';
 
 @Component({
   selector: 'app-profile',
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
+  standalone: false,
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
@@ -30,32 +31,6 @@ export class ProfileComponent implements OnInit {
 
   profileForm: FormGroup;
   isValidForm: boolean | null;
-
-  msgProfile = _('Profile');
-  msgProfileName = _('Name');
-  msgProfileSurname1 = _('Surname1');
-  msgProfileSurname2 = _('Surname2');
-  msgProfileAlias = _('Alias');
-  msgProfileBirthDate = _('Birth Date');
-  msgProfileEmail = _('Email');
-  msgProfilePassword = _('Password');
-  msgProfileUpdate = _('Update');
-  msgProfileError001 = _('Name is required');
-  msgProfileError002 = _('Name must be at least 5 characters long');
-  msgProfileError003 = _('Name can be max 25 characters long');
-  msgProfileError004 = _('Surname1 is required');
-  msgProfileError005 = _('Surname1 must be at least 5 characters long');
-  msgProfileError006 = _('Surname1 can be max 25 characters long');
-  msgProfileError007 = _('Surname2 must be at least 5 characters long');
-  msgProfileError008 = _('Surname2 can be max 25 characters long');
-  msgProfileError009 = _('Alias is required');
-  msgProfileError010 = _('Alias must be at least 5 characters long');
-  msgProfileError011 = _('Alias can be max 25 characters long');
-  msgProfileError012 = _('Birth date is required');
-  msgProfileError013 = _('Email is required');
-  msgProfileError014 = _('Email must be a valid email address');
-  msgProfileError015 = _('Password is required');
-  msgProfileError016 = _('Password must be at least 8 characters long');
 
   constructor(
     private formBuilder: UntypedFormBuilder,
@@ -116,6 +91,9 @@ export class ProfileComponent implements OnInit {
     if (userId) {
       try {
         const userData = await this.userService.getUSerById(userId);
+        if (userData === undefined) {
+          throw new Error('Couldn`t retrieve user data');
+        }
 
         this.name.setValue(userData.name);
         this.surname_1.setValue(userData.surname_1);

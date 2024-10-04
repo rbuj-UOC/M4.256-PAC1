@@ -1,8 +1,9 @@
+[![Node.js CI](https://github.com/rbuj-UOC/M4.256-PAC1/actions/workflows/node.js.yml/badge.svg)](https://github.com/rbuj-UOC/M4.256-PAC1/actions/workflows/node.js.yml)
 # PAC 1
 
 # Prerequisits
 - Instal·lar i executar [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-- Instal·lar [Node.js 18](https://nodejs.org/en/download/package-manager/current)
+- Instal·lar [Node.js 20](https://nodejs.org/en/download/package-manager/current)
 - Instal·lar [Angular](https://angular.dev/tools/cli/setup-local)
 
 # backend

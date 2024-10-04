@@ -1,26 +1,19 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { marker as _ } from '@biesbjerg/ngx-translate-extract-marker';
-import { CategoryDTO } from 'src/app/Models/category.dto';
-import { CategoryService } from 'src/app/Services/category.service';
-import { LocalStorageService } from 'src/app/Services/local-storage.service';
-import { SharedService } from 'src/app/Services/shared.service';
+import { CategoryDTO } from '../../../Models/category.dto';
+import { CategoryService } from '../../../Services/category.service';
+import { LocalStorageService } from '../../../Services/local-storage.service';
+import { SharedService } from '../../../Services/shared.service';
 
 @Component({
   selector: 'app-categories-list',
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
+  standalone: false,
   templateUrl: './categories-list.component.html',
   styleUrls: ['./categories-list.component.scss']
 })
 export class CategoriesListComponent {
-  categories!: CategoryDTO[];
-
-  msgCategoryID = _('ID');
-  msgCategoryTitle = _('TITLE');
-  msgCategoryDescription = _('DESCRIPTION');
-  msgCategoryCssColor = _('CSS COLOR');
-  msgCategoryActions = _('ACTIONS');
-  msgCategoryActionsUpdate = _('UPDATE');
-  msgCategoryActionsDelete = _('DELETE');
+  categories!: CategoryDTO[] | undefined;
 
   constructor(
     private categoryService: CategoryService,
@@ -64,6 +57,9 @@ export class CategoriesListComponent {
       try {
         const rowsAffected =
           await this.categoryService.deleteCategory(categoryId);
+        if (rowsAffected === undefined) {
+          throw new Error('Couldn`t delete the category');
+        }
         if (rowsAffected.affected > 0) {
           this.loadCategories();
         }

@@ -1,30 +1,22 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { marker as _ } from '@biesbjerg/ngx-translate-extract-marker';
-import { HeaderMenus } from 'src/app/Models/header-menus.dto';
-import { PostDTO } from 'src/app/Models/post.dto';
-import { HeaderMenusService } from 'src/app/Services/header-menus.service';
-import { LocalStorageService } from 'src/app/Services/local-storage.service';
-import { PostService } from 'src/app/Services/post.service';
-import { SharedService } from 'src/app/Services/shared.service';
+import { HeaderMenus } from '../../Models/header-menus.dto';
+import { PostDTO } from '../../Models/post.dto';
+import { HeaderMenusService } from '../../Services/header-menus.service';
+import { LocalStorageService } from '../../Services/local-storage.service';
+import { PostService } from '../../Services/post.service';
+import { SharedService } from '../../Services/shared.service';
 
 @Component({
   selector: 'app-home',
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
+  standalone: false,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  posts!: PostDTO[];
+  posts!: PostDTO[] | undefined;
   showButtons: boolean;
-
-  msgHomeTitle = _('Title');
-  msgHomeDescription = _('Description');
-  msgHomeLikes = _('Likes');
-  msgHomeDislikes = _('Dislikes');
-  msgHomePublicationDate = _('Publication Date');
-  msgHomePublishedBy = _('Published By');
-  msgHomeLike = _('Like');
-  msgHomeDislike = _('Dislike');
 
   constructor(
     private postService: PostService,

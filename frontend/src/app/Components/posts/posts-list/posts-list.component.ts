@@ -1,28 +1,19 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { marker as _ } from '@biesbjerg/ngx-translate-extract-marker';
-import { PostDTO } from 'src/app/Models/post.dto';
-import { LocalStorageService } from 'src/app/Services/local-storage.service';
-import { PostService } from 'src/app/Services/post.service';
-import { SharedService } from 'src/app/Services/shared.service';
+import { PostDTO } from '../../../Models/post.dto';
+import { LocalStorageService } from '../../../Services/local-storage.service';
+import { PostService } from '../../../Services/post.service';
+import { SharedService } from '../../../Services/shared.service';
 
 @Component({
   selector: 'app-posts-list',
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
+  standalone: false,
   templateUrl: './posts-list.component.html',
   styleUrls: ['./posts-list.component.scss']
 })
 export class PostsListComponent {
-  posts!: PostDTO[];
-
-  msgPostList = _('Post List');
-  msgPostListID = _('ID');
-  msgPostListTITLE = _('TITLE');
-  msgPostListDESCRIPTION = _('DESCRIPTION');
-  msgPostListNUM_LIKES = _('NUM_LIKES');
-  msgPostListNUM_DISLIKES = _('NUM_DISLIKES');
-  msgPostListACTIONS = _('ACTIONS');
-  msgPostListUPDATE = _('UPDATE');
-  msgPostListDELETE = _('DELETE');
+  posts!: PostDTO[] | undefined;
 
   constructor(
     private postService: PostService,
@@ -62,6 +53,9 @@ export class PostsListComponent {
     if (result) {
       try {
         const rowsAffected = await this.postService.deletePost(PostId);
+        if (rowsAffected === undefined) {
+          throw new Error('Couldn`t retrieve rowsAffected');
+        }
         if (rowsAffected.affected > 0) {
           this.loadPosts();
         }

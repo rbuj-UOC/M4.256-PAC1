@@ -1,27 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { marker as _ } from '@biesbjerg/ngx-translate-extract-marker';
-import { HeaderMenus } from 'src/app/Models/header-menus.dto';
-import { HeaderMenusService } from 'src/app/Services/header-menus.service';
-import { LocalStorageService } from 'src/app/Services/local-storage.service';
+import { HeaderMenus } from '../../Models/header-menus.dto';
+import { HeaderMenusService } from '../../Services/header-menus.service';
+import { LocalStorageService } from '../../Services/local-storage.service';
 
 @Component({
   selector: 'app-header',
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
+  standalone: false,
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
   showAuthSection: boolean;
   showNoAuthSection: boolean;
-
-  msgHeaderHome = _('Home');
-  msgHeaderDashboard = _('Dashboard');
-  msgHeaderAdminPosts = _('Admin posts');
-  msgHeaderAdminCategories = _('Admin categories');
-  msgHeaderProfile = _('Profile');
-  msgHeaderLogout = _('Logout');
-  msgHeaderRegister = _('Register');
-  msgHeaderLogin = _('Login');
 
   constructor(
     private router: Router,

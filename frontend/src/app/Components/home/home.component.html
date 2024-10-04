@@ -7,21 +7,16 @@
       {{ category.title }}
     </span>
   </div>
-  <h1>{{ msgHomeTitle | translate }}: {{ post.title }}</h1>
+  <h1>Title: {{ post.title }}</h1>
   <ul>
-    <li>{{ msgHomeDescription | translate }}: {{ post.description }}</li>
-    <li>{{ msgHomeLikes | translate }}: {{ post.num_likes }}</li>
-    <li>{{ msgHomeDislikes | translate }}: {{ post.num_dislikes }}</li>
-    <li>
-      {{ msgHomePublicationDate | translate }}:
-      {{ post.publication_date | formatDate: 3 }}
-    </li>
-    <li>{{ msgHomePublishedBy | translate }}: {{ post.userAlias }}</li>
+    <li>Description: {{ post.description }}</li>
+    <li>Likes: {{ post.num_likes }}</li>
+    <li>Dislikes: {{ post.num_dislikes }}</li>
+    <li>Publication Date: {{ post.publication_date | formatDate: 3 }}</li>
+    <li>Published By: {{ post.userAlias }}</li>
   </ul>
-  <button [hidden]="!showButtons" (click)="like(post.postId)">
-    {{ msgHomeLike | translate }}
-  </button>
+  <button [hidden]="!showButtons" (click)="like(post.postId)">Like</button>
   <button [hidden]="!showButtons" (click)="dislike(post.postId)">
-    {{ msgHomeDislike | translate }}
+    Dislike
   </button>
 </div>

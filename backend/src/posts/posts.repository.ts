@@ -16,7 +16,8 @@ export class PostsRepository {
   }
 
   getPostById(id: string): Promise<PostEntity> {
-    return this.postsRepository.findOne(id, {
+    return this.postsRepository.findOne({
+      where: { postId: id },
       relations: ['user', 'categories'],
     });
   }
@@ -58,7 +59,8 @@ export class PostsRepository {
   }
 
   async likePost(id: string): Promise<UpdateResult> {
-    const post = await this.postsRepository.findOne(id, {
+    const post = await this.postsRepository.findOne({
+      where: { postId: id },
       relations: ['user', 'categories'],
     });
     const likes = post.num_likes + 1;
@@ -72,7 +74,8 @@ export class PostsRepository {
   }
 
   async dislikePost(id: string): Promise<UpdateResult> {
-    const post = await this.postsRepository.findOne(id, {
+    const post = await this.postsRepository.findOne({
+      where: { postId: id },
       relations: ['user', 'categories'],
     });
 

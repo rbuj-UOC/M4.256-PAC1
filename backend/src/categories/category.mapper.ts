@@ -4,7 +4,9 @@ import { CategoryEntity } from './category.entity';
 
 export class CategoryMapper {
   async dtoToEntity(categoryDTO: CategoryDto): Promise<CategoryEntity> {
-    const userAssociatedEntity = await UserEntity.findOne(categoryDTO.userId);
+    const userAssociatedEntity = await UserEntity.findOne({
+      where: { userId: categoryDTO.userId },
+    });
     /*
     const postsAssociated: PostEntity[] = new Array<PostEntity>();
 

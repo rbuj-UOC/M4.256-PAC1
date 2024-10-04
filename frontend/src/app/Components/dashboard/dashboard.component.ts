@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { marker as _ } from '@biesbjerg/ngx-translate-extract-marker';
-import { PostService } from 'src/app/Services/post.service';
-import { SharedService } from 'src/app/Services/shared.service';
+import { PostService } from '../../Services/post.service';
+import { SharedService } from '../../Services/shared.service';
 
 @Component({
   selector: 'app-dashboard',
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
+  standalone: false,
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
@@ -12,10 +13,6 @@ export class DashboardComponent {
   isValidForm: boolean | null;
   total_likes: number;
   total_dislikes: number;
-
-  msgDashboardDashboard = _('Dashboard');
-  msgDashboardTotalLikes = _('Total Likes');
-  msgDashboardTotalDislikes = _('Total Dislikes');
 
   constructor(
     private postService: PostService,

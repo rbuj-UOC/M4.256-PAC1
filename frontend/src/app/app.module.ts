@@ -1,13 +1,7 @@
-import {
-  HTTP_INTERCEPTORS,
-  HttpClient,
-  HttpClientModule
-} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoriesListComponent } from './Components/categories/categories-list/categories-list.component';
@@ -44,14 +38,7 @@ import { AuthInterceptorService } from './Services/auth-interceptor.service';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
+    HttpClientModule
   ],
   providers: [
     {
@@ -63,7 +50,3 @@ import { AuthInterceptorService } from './Services/auth-interceptor.service';
   bootstrap: [AppComponent]
 })
 export class AppModule {}
-
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
-}

@@ -14,17 +14,17 @@ export class UserService {
     this.urlBlogUocApi = 'http://localhost:3000/' + this.controller;
   }
 
-  register(user: UserDTO): Promise<UserDTO> {
+  register(user: UserDTO): Promise<UserDTO | undefined> {
     return this.http.post<UserDTO>(this.urlBlogUocApi, user).toPromise();
   }
 
-  updateUser(userId: string, user: UserDTO): Promise<UserDTO> {
+  updateUser(userId: string, user: UserDTO): Promise<UserDTO | undefined> {
     return this.http
       .put<UserDTO>(this.urlBlogUocApi + '/' + userId, user)
       .toPromise();
   }
 
-  getUSerById(userId: string): Promise<UserDTO> {
+  getUSerById(userId: string): Promise<UserDTO | undefined> {
     return this.http
       .get<UserDTO>(this.urlBlogUocApi + '/' + userId)
       .toPromise();

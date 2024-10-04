@@ -7,22 +7,23 @@ import {
   Validators
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { marker as _ } from '@biesbjerg/ngx-translate-extract-marker';
-import { CategoryDTO } from 'src/app/Models/category.dto';
-import { PostDTO } from 'src/app/Models/post.dto';
-import { CategoryService } from 'src/app/Services/category.service';
-import { LocalStorageService } from 'src/app/Services/local-storage.service';
-import { PostService } from 'src/app/Services/post.service';
-import { SharedService } from 'src/app/Services/shared.service';
+import { CategoryDTO } from '../../../Models/category.dto';
+import { PostDTO } from '../../../Models/post.dto';
+import { CategoryService } from '../../../Services/category.service';
+import { LocalStorageService } from '../../../Services/local-storage.service';
+import { PostService } from '../../../Services/post.service';
+import { SharedService } from '../../../Services/shared.service';
 
 @Component({
   selector: 'app-post-form',
+  // eslint-disable-next-line @angular-eslint/prefer-standalone
+  standalone: false,
   templateUrl: './post-form.component.html',
   styleUrls: ['./post-form.component.scss']
 })
 export class PostFormComponent implements OnInit {
-  user_categories!: CategoryDTO[];
-  post: PostDTO;
+  user_categories!: CategoryDTO[] | undefined;
+  post: PostDTO | undefined;
   title: UntypedFormControl;
   description: UntypedFormControl;
   publication_date: UntypedFormControl;
@@ -30,18 +31,6 @@ export class PostFormComponent implements OnInit {
 
   postForm: UntypedFormGroup;
   isValidForm: boolean | null;
-
-  msgPostForm = _('Post Form');
-  msgPostFormTitle = _('Title');
-  msgPostFormDescription = _('Description');
-  msgPostFormPublicationDate = _('Publication Date');
-  msgPostFormCategories = _('Categories');
-  msgPostFormSAVE = _('SAVE');
-  msgPostFormError001 = _('Title is required');
-  msgPostFormError002 = _('Title can be max 55 characters long');
-  msgPostFormError003 = _('Description is required');
-  msgPostFormError004 = _('Description can be max 255 characters long');
-  msgPostFormError005 = _('Publication Date is required');
 
   private isUpdateMode: boolean;
   private validRequest: boolean;
@@ -97,6 +86,9 @@ export class PostFormComponent implements OnInit {
       this.isUpdateMode = true;
       try {
         this.post = await this.postService.getPostById(this.postId);
+        if (this.post == undefined) {
+          throw new Error('Couldn`t retrieve the post');
+        }
         this.title.setValue(this.post.title);
         this.description.setValue(this.post.description);
         this.publication_date.setValue(
@@ -130,8 +122,11 @@ export class PostFormComponent implements OnInit {
     if (this.postId) {
       const userId = this.localStorageService.get('user_id');
       if (userId) {
-        this.post.userId = userId;
         try {
+          if (this.post == undefined) {
+            throw new Error('The post is undefined');
+          }
+          this.post.userId = userId;
           await this.postService.updatePost(this.postId, this.post);
           responseOK = true;
         } catch (error: any) {
@@ -158,8 +153,11 @@ export class PostFormComponent implements OnInit {
     let responseOK = false;
     const userId = this.localStorageService.get('user_id');
     if (userId) {
-      this.post.userId = userId;
       try {
+        if (this.post == undefined) {
+          throw new Error('The post is undefined');
+        }
+        this.post.userId = userId;
         await this.postService.createPost(this.post);
         responseOK = true;
       } catch (error: any) {

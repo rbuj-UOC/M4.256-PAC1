@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres
+    image: postgres:alpine
     restart: always
     environment:
       - POSTGRES_PASSWORD=root
@@ -13,8 +13,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    environment:
-      - PORT=${PORT}
     ports:
       - '3000:3000'
     depends_on:

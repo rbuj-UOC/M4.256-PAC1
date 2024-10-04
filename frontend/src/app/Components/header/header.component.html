@@ -2,20 +2,18 @@
 
 <!-- NO AUTH REQUIRED -->
 <div *ngIf="showNoAuthSection">
-  <button (click)="home()">{{ msgHeaderHome | translate }}</button>
-  <button (click)="dashboard()">{{ msgHeaderDashboard | translate }}</button>
-  <button (click)="login()">{{ msgHeaderLogin | translate }}</button>
-  <button (click)="register()">{{ msgHeaderRegister | translate }}</button>
+  <button (click)="home()">Home</button>
+  <button (click)="dashboard()">Dashboard</button>
+  <button (click)="login()">Login</button>
+  <button (click)="register()">register</button>
 </div>
 
 <!-- AUTH REQUIRED -->
 <div *ngIf="showAuthSection">
-  <button (click)="home()">{{ msgHeaderHome | translate }}</button>
-  <button (click)="dashboard()">{{ msgHeaderDashboard | translate }}</button>
-  <button (click)="adminPosts()">{{ msgHeaderAdminPosts | translate }}</button>
-  <button (click)="adminCategories()">
-    {{ msgHeaderAdminCategories | translate }}
-  </button>
-  <button (click)="profile()">{{ msgHeaderProfile | translate }}</button>
-  <button (click)="logout()">{{ msgHeaderLogout | translate }}</button>
+  <button (click)="home()">Home</button>
+  <button (click)="dashboard()">Dashboard</button>
+  <button (click)="adminPosts()">Admin posts</button>
+  <button (click)="adminCategories()">Admin categories</button>
+  <button (click)="profile()">Profile</button>
+  <button (click)="logout()">Logout</button>
 </div>

@@ -16,23 +16,24 @@ export class CategoriesRepository {
   }
 
   getCategoryById(id: string): Promise<CategoryEntity> {
-    return this.categoriesRepository.findOne(id, {
+    return this.categoriesRepository.findOne({
+      where: { categoryId: id },
       relations: ['user'],
     });
   }
 
   getCategoryByTitle(title: string): Promise<CategoryEntity> {
-    return this.categoriesRepository.findOne(
-      { title },
-      { relations: ['user'] },
-    );
+    return this.categoriesRepository.findOne({
+      where: { title: title },
+      relations: ['user'],
+    });
   }
 
   getCategoryByColor(css_color: string): Promise<CategoryEntity> {
-    return this.categoriesRepository.findOne(
-      { css_color },
-      { relations: ['user'] },
-    );
+    return this.categoriesRepository.findOne({
+      where: { css_color: css_color },
+      relations: ['user'],
+    });
   }
 
   categoryTitleAlreadyExist(category: CategoryDto): Promise<number> {
@@ -69,7 +70,8 @@ export class CategoriesRepository {
     );
     const updateCategory = await this.mapper.dtoToEntity(updateCategoryDTO);
     await this.categoriesRepository.update(id, updateCategory);
-    return this.categoriesRepository.findOne(id, {
+    return this.categoriesRepository.findOne({
+      where: { categoryId: id },
       relations: ['user'],
     });
   }

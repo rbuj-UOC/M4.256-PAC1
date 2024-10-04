@@ -13,9 +13,12 @@
   },
   "eslint.format.enable": true,
   "emmet.triggerExpansionOnTab": true,
-  "cSpell.language": "es,en",
+  "cSpell.language": "es,ca,en",
   "htmlhint.options": {
     "attr-lowercase": false,
     "doctype-first": false
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
