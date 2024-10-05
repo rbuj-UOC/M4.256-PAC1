@@ -62,6 +62,9 @@ export class PostsListComponent {
     if (result) {
       try {
         const rowsAffected = await this.postService.deletePost(PostId);
+        if (rowsAffected === undefined) {
+          throw new Error('Couldn`t retrieve rowsAffected');
+        }
         if (rowsAffected.affected > 0) {
           this.loadPosts();
         }

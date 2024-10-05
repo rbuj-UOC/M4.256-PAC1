@@ -23,7 +23,7 @@ export class PostService {
     this.urlBlogUocApi = 'http://localhost:3000/' + this.controller;
   }
 
-  getPosts(): Promise<PostDTO[]> {
+  getPosts(): Promise<PostDTO[] | undefined> {
     return this.http.get<PostDTO[]>(this.urlBlogUocApi).toPromise();
   }
 
@@ -33,35 +33,35 @@ export class PostService {
       .toPromise();
   }
 
-  createPost(post: PostDTO): Promise<PostDTO> {
+  createPost(post: PostDTO): Promise<PostDTO | undefined> {
     return this.http.post<PostDTO>(this.urlBlogUocApi, post).toPromise();
   }
 
-  getPostById(postId: string): Promise<PostDTO> {
+  getPostById(postId: string): Promise<PostDTO | undefined> {
     return this.http
       .get<PostDTO>(this.urlBlogUocApi + '/' + postId)
       .toPromise();
   }
 
-  updatePost(postId: string, post: PostDTO): Promise<PostDTO> {
+  updatePost(postId: string, post: PostDTO): Promise<PostDTO | undefined> {
     return this.http
       .put<PostDTO>(this.urlBlogUocApi + '/' + postId, post)
       .toPromise();
   }
 
-  likePost(postId: string): Promise<updateResponse> {
+  likePost(postId: string): Promise<updateResponse | undefined> {
     return this.http
       .put<updateResponse>(this.urlBlogUocApi + '/like/' + postId, NONE_TYPE)
       .toPromise();
   }
 
-  dislikePost(postId: string): Promise<updateResponse> {
+  dislikePost(postId: string): Promise<updateResponse | undefined> {
     return this.http
       .put<updateResponse>(this.urlBlogUocApi + '/dislike/' + postId, NONE_TYPE)
       .toPromise();
   }
 
-  deletePost(postId: string): Promise<deleteResponse> {
+  deletePost(postId: string): Promise<deleteResponse | undefined> {
     return this.http
       .delete<deleteResponse>(this.urlBlogUocApi + '/' + postId)
       .toPromise();

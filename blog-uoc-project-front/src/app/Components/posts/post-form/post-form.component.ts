@@ -21,8 +21,8 @@ import { SharedService } from 'src/app/Services/shared.service';
   styleUrls: ['./post-form.component.scss']
 })
 export class PostFormComponent implements OnInit {
-  user_categories!: CategoryDTO[];
-  post: PostDTO;
+  user_categories!: CategoryDTO[] | undefined;
+  post: PostDTO | undefined;
   title: UntypedFormControl;
   description: UntypedFormControl;
   publication_date: UntypedFormControl;
@@ -97,6 +97,9 @@ export class PostFormComponent implements OnInit {
       this.isUpdateMode = true;
       try {
         this.post = await this.postService.getPostById(this.postId);
+        if (this.post == undefined) {
+          throw new Error('Couldn`t retrieve the post');
+        }
         this.title.setValue(this.post.title);
         this.description.setValue(this.post.description);
         this.publication_date.setValue(
@@ -130,8 +133,11 @@ export class PostFormComponent implements OnInit {
     if (this.postId) {
       const userId = this.localStorageService.get('user_id');
       if (userId) {
-        this.post.userId = userId;
         try {
+          if (this.post == undefined) {
+            throw new Error('The post is undefined');
+          }
+          this.post.userId = userId;
           await this.postService.updatePost(this.postId, this.post);
           responseOK = true;
         } catch (error: any) {
@@ -158,8 +164,11 @@ export class PostFormComponent implements OnInit {
     let responseOK = false;
     const userId = this.localStorageService.get('user_id');
     if (userId) {
-      this.post.userId = userId;
       try {
+        if (this.post == undefined) {
+          throw new Error('The post is undefined');
+        }
+        this.post.userId = userId;
         await this.postService.createPost(this.post);
         responseOK = true;
       } catch (error: any) {

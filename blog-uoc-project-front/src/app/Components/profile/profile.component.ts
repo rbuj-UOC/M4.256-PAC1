@@ -116,6 +116,9 @@ export class ProfileComponent implements OnInit {
     if (userId) {
       try {
         const userData = await this.userService.getUSerById(userId);
+        if (userData === undefined) {
+          throw new Error('Couldn`t retrieve user data');
+        }
 
         this.name.setValue(userData.name);
         this.surname_1.setValue(userData.surname_1);

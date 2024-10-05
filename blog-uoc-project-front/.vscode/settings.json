@@ -17,5 +17,8 @@
   "htmlhint.options": {
     "attr-lowercase": false,
     "doctype-first": false
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }

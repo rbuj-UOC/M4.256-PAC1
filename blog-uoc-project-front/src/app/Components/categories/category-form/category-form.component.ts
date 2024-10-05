@@ -19,7 +19,7 @@ import { SharedService } from 'src/app/Services/shared.service';
   styleUrls: ['./category-form.component.scss']
 })
 export class CategoryFormComponent implements OnInit {
-  category: CategoryDTO;
+  category: CategoryDTO | undefined;
   title: UntypedFormControl;
   description: UntypedFormControl;
   css_color: UntypedFormControl;
@@ -90,12 +90,13 @@ export class CategoryFormComponent implements OnInit {
           this.categoryId
         );
 
+        if (this.category === undefined) {
+          throw new Error('Couldn`t retrieve the category');
+        }
+
         this.title.setValue(this.category.title);
-
         this.description.setValue(this.category.description);
-
         this.css_color.setValue(this.category.css_color);
-
         this.categoryForm = this.formBuilder.group({
           title: this.title,
           description: this.description,
@@ -114,8 +115,11 @@ export class CategoryFormComponent implements OnInit {
     if (this.categoryId) {
       const userId = this.localStorageService.get('user_id');
       if (userId) {
-        this.category.userId = userId;
         try {
+          if (this.category === undefined) {
+            throw new Error('The category is undefined');
+          }
+          this.category.userId = userId;
           await this.categoryService.updateCategory(
             this.categoryId,
             this.category
@@ -145,8 +149,11 @@ export class CategoryFormComponent implements OnInit {
     let responseOK: boolean = false;
     const userId = this.localStorageService.get('user_id');
     if (userId) {
-      this.category.userId = userId;
       try {
+        if (this.category === undefined) {
+          throw new Error('The category is undefined');
+        }
+        this.category.userId = userId;
         await this.categoryService.createCategory(this.category);
         responseOK = true;
       } catch (error: any) {

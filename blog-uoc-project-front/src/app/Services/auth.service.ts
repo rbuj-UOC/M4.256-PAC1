@@ -19,7 +19,7 @@ export class AuthService {
     this.urlBlogUocApi = 'http://localhost:3000/' + this.controller;
   }
 
-  login(auth: AuthDTO): Promise<AuthToken> {
+  login(auth: AuthDTO): Promise<AuthToken | undefined> {
     return this.http.post<AuthToken>(this.urlBlogUocApi, auth).toPromise();
   }
 }

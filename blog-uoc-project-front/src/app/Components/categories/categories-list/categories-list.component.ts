@@ -12,7 +12,7 @@ import { SharedService } from 'src/app/Services/shared.service';
   styleUrls: ['./categories-list.component.scss']
 })
 export class CategoriesListComponent {
-  categories!: CategoryDTO[];
+  categories!: CategoryDTO[] | undefined;
 
   msgCategoryID = _('ID');
   msgCategoryTitle = _('TITLE');
@@ -64,6 +64,9 @@ export class CategoriesListComponent {
       try {
         const rowsAffected =
           await this.categoryService.deleteCategory(categoryId);
+        if (rowsAffected === undefined) {
+          throw new Error('Couldn`t delete the category');
+        }
         if (rowsAffected.affected > 0) {
           this.loadCategories();
         }

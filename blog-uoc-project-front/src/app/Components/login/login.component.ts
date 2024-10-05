@@ -70,6 +70,9 @@ export class LoginComponent {
     this.loginUser.password = this.password.value;
     try {
       const authToken = await this.authService.login(this.loginUser);
+      if (authToken === undefined) {
+        throw new Error('Couldn`t retrieve the authToken');
+      }
       responseOK = true;
       this.loginUser.user_id = authToken.user_id;
       this.loginUser.access_token = authToken.access_token;

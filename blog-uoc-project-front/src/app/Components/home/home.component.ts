@@ -14,7 +14,7 @@ import { SharedService } from 'src/app/Services/shared.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  posts!: PostDTO[];
+  posts!: PostDTO[] | undefined;
   showButtons: boolean;
 
   msgHomeTitle = _('Title');
