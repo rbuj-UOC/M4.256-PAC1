@@ -6,13 +6,17 @@ import { PostEntity } from './post.entity';
 
 export class PostMapper {
   async dtoToEntity(postDto: PostDto): Promise<PostEntity> {
-    const userAssociatedEntity = await UserEntity.findOne(postDto.userId);
+    const userAssociatedEntity = await UserEntity.findOne({
+      where: { userId: postDto.userId },
+    });
 
     const categoriesAssociated: CategoryEntity[] = new Array<CategoryEntity>();
 
     if (postDto.categories) {
       for (let i = 0; i < postDto.categories.length; i++) {
-        const category = await CategoryEntity.findOne(postDto.categories[i]);
+        const category = await CategoryEntity.findOne({
+          where: { categoryId: postDto.categories[i] },
+        });
         categoriesAssociated.push(category);
       }
     }

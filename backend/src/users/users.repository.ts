@@ -20,15 +20,15 @@ export class UsersRepository {
   }
 
   getUserById(id: string): Promise<UserEntity> {
-    return this.usersRepository.findOne(id);
+    return this.usersRepository.findOne({ where: { userId: id } });
   }
 
   getUserByAlias(alias: string): Promise<UserEntity> {
-    return this.usersRepository.findOne({ alias });
+    return this.usersRepository.findOne({ where: { alias: alias } });
   }
 
   getUserByEmail(email: string): Promise<UserEntity> {
-    return this.usersRepository.findOne({ email });
+    return this.usersRepository.findOne({ where: { email: email } });
   }
 
   userAliasAlreadyExist(user: UserDto): Promise<number> {
@@ -39,8 +39,10 @@ export class UsersRepository {
 
   userEmailAlreadyExist(user: UserDto): Promise<number> {
     return this.usersRepository.count({
-      email: user.email,
-      userId: Not(user.id),
+      where: {
+        email: user.email,
+        userId: Not(user.id),
+      },
     });
   }
 
@@ -62,7 +64,7 @@ export class UsersRepository {
     );
     const updateUser = this.mapper.dtoToEntity(updateUserDTO);
     await this.usersRepository.update(id, updateUser);
-    return this.usersRepository.findOne(id);
+    return this.usersRepository.findOne({ where: { userId: id } });
   }
 
   deleteUser(id: string): Promise<DeleteResult> {
