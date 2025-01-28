@@ -1,4 +1,5 @@
 {
+  "material-icon-theme.activeIconPack": "nest",
   "sqltools.connections": [
     {
       "previewLimit": 50,

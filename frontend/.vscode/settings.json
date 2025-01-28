@@ -1,4 +1,5 @@
 {
+  "material-icon-theme.activeIconPack": "angular",
   "angular.enable-strict-mode-prompt": false,
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "[html]": {
