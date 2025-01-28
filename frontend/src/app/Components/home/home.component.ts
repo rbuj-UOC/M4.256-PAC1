@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HeaderMenus } from '../../Models/header-menus.dto';
 import { PostDTO } from '../../Models/post.dto';
@@ -14,7 +14,7 @@ import { SharedService } from '../../Services/shared.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   posts!: PostDTO[] | undefined;
   showButtons: boolean;
 

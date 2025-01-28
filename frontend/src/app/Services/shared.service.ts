@@ -14,8 +14,6 @@ export interface ResponseError {
   providedIn: 'root'
 })
 export class SharedService {
-  constructor() {}
-
   async managementToast(
     element: string,
     validRequest: boolean,
