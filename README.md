@@ -1,4 +1,4 @@
-[![Node.js CI](https://github.com/rbuj-UOC/M4.256-PAC1/actions/workflows/node.js.yml/badge.svg)](https://github.com/rbuj-UOC/M4.256-PAC1/actions/workflows/node.js.yml)
+[![CI/CD with GitHub Pages](https://github.com/rbuj-UOC/M4.256-PAC1/actions/workflows/jekyll.yml/badge.svg)](https://github.com/rbuj-UOC/M4.256-PAC1/actions/workflows/jekyll.yml)
 # PAC 1
 
 ## Prerequisits
