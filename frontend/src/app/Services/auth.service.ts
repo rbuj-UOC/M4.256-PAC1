@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 import { AuthDTO } from '../Models/auth.dto';
 
 interface AuthToken {
@@ -16,7 +17,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
     this.controller = 'auth';
-    this.urlBlogUocApi = 'http://localhost:3000/' + this.controller;
+    this.urlBlogUocApi = environment.apiUrl + '/' + this.controller;
   }
 
   login(auth: AuthDTO): Promise<AuthToken | undefined> {
