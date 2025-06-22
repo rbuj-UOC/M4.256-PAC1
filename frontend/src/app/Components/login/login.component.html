@@ -8,30 +8,35 @@
     <div class="field">
       <label for="email">Email: </label>
       <input type="email" [formControl]="email" />
-      <div *ngIf="email.errors && (email.touched || email.dirty)">
-        <span style="color: red" *ngIf="email.errors.required"
-          >Email is required</span
-        >
-        <span style="color: red" *ngIf="email.errors.invalid"
-          >Email must be a valid email address</span
-        >
-      </div>
+      @if (email.errors && (email.touched || email.dirty)) {
+        <div>
+          @if (email.errors.required) {
+            <span style="color: red">Email is required</span>
+          } @else if (email.errors.invalid) {
+            <span style="color: red">Email must be a valid email address</span>
+          }
+        </div>
+      }
     </div>
 
     <div class="field">
       <label for="password">Password: </label>
       <input type="password" [formControl]="password" />
-      <div *ngIf="password.errors && (password.touched || password.dirty)">
-        <span style="color: red" *ngIf="password.errors.required"
-          >Password is required</span
-        >
-        <span style="color: red" *ngIf="password.errors.minlength"
-          >Password must be at least 8 characters long</span
-        >
-        <span style="color: red" *ngIf="password.errors.maxlength"
-          >Password can be max 16 characters long</span
-        >
-      </div>
+      @if (password.errors && (password.touched || password.dirty)) {
+        <div>
+          @if (password.errors.required) {
+            <span style="color: red">Password is required</span>
+          } @else if (password.errors.minlength) {
+            <span style="color: red"
+              >Password must be at least 8 characters long</span
+            >
+          } @else if (password.errors.maxlength) {
+            <span style="color: red"
+              >Password can be max 16 characters long</span
+            >
+          }
+        </div>
+      }
     </div>
 
     <button type="submit" [disabled]="!loginForm.valid">Login</button>

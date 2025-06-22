@@ -12,15 +12,17 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let category of categories">
-      <td>{{ category.categoryId }}</td>
-      <td>{{ category.title }}</td>
-      <td>{{ category.description }}</td>
-      <td>{{ category.css_color }}</td>
-      <td>
-        <button (click)="updateCategory(category.categoryId)">UPDATE</button>
-        <button (click)="deleteCategory(category.categoryId)">DELETE</button>
-      </td>
-    </tr>
+    @for (category of categories; track category.categoryId) {
+      <tr>
+        <td>{{ category.categoryId }}</td>
+        <td>{{ category.title }}</td>
+        <td>{{ category.description }}</td>
+        <td>{{ category.css_color }}</td>
+        <td>
+          <button (click)="updateCategory(category.categoryId)">UPDATE</button>
+          <button (click)="deleteCategory(category.categoryId)">DELETE</button>
+        </td>
+      </tr>
+    }
   </tbody>
 </table>

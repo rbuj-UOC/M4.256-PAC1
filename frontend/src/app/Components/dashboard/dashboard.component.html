@@ -1,6 +1,8 @@
-<div *ngIf="isValidForm === true">
-  <h1>Dashboard</h1>
-  Total Likes: {{ total_likes }}
-  <br />
-  Total Dislikes': {{ total_dislikes }}
-</div>
+@if (isValidForm === true) {
+  <div>
+    <h1>Dashboard</h1>
+    Total Likes: {{ total_likes }}
+    <br />
+    Total Dislikes': {{ total_dislikes }}
+  </div>
+}

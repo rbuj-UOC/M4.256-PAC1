@@ -1,21 +1,23 @@
-<div *ngFor="let post of posts" class="post">
-  <div class="categories">
-    <span
-      *ngFor="let category of post.categories"
-      [ngStyle]="{ 'background-color': category.css_color }">
-      {{ category.title }}
-    </span>
+@for (post of posts; track post.postId) {
+  <div class="post">
+    <div class="categories">
+      @for (category of post.categories; track category.categoryId) {
+        <span [ngStyle]="{ 'background-color': category.css_color }">
+          {{ category.title }}
+        </span>
+      }
+    </div>
+    <h1>Title: {{ post.title }}</h1>
+    <ul>
+      <li>Description: {{ post.description }}</li>
+      <li>Likes: {{ post.num_likes }}</li>
+      <li>Dislikes: {{ post.num_dislikes }}</li>
+      <li>Publication Date: {{ post.publication_date | formatDate: 3 }}</li>
+      <li>Published By: {{ post.userAlias }}</li>
+    </ul>
+    <button [hidden]="!showButtons" (click)="like(post.postId)">Like</button>
+    <button [hidden]="!showButtons" (click)="dislike(post.postId)">
+      Dislike
+    </button>
   </div>
-  <h1>Title: {{ post.title }}</h1>
-  <ul>
-    <li>Description: {{ post.description }}</li>
-    <li>Likes: {{ post.num_likes }}</li>
-    <li>Dislikes: {{ post.num_dislikes }}</li>
-    <li>Publication Date: {{ post.publication_date | formatDate: 3 }}</li>
-    <li>Published By: {{ post.userAlias }}</li>
-  </ul>
-  <button [hidden]="!showButtons" (click)="like(post.postId)">Like</button>
-  <button [hidden]="!showButtons" (click)="dislike(post.postId)">
-    Dislike
-  </button>
-</div>
+}
