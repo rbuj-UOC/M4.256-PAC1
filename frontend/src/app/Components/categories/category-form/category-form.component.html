@@ -6,8 +6,7 @@
   <form
     *ngIf="categoryForm"
     [formGroup]="categoryForm"
-    (ngSubmit)="saveCategory()"
-  >
+    (ngSubmit)="saveCategory()">
     <div class="field">
       <label for="title">Title:</label>
       <input type="text" [formControl]="title" />
@@ -15,8 +14,7 @@
       <div *ngIf="title.errors">
         <div
           *ngIf="title.errors && isValidForm !== null && !isValidForm"
-          [ngClass]="'error'"
-        >
+          [ngClass]="'error'">
           <div *ngIf="title.errors.required">Title is required</div>
           <div *ngIf="title.errors.maxlength">
             Title can be max 55 characters long
@@ -32,8 +30,7 @@
       <div *ngIf="description.errors">
         <div
           *ngIf="description.errors && isValidForm !== null && !isValidForm"
-          [ngClass]="'error'"
-        >
+          [ngClass]="'error'">
           <div *ngIf="description.errors.required">Description is required</div>
           <div *ngIf="description.errors.maxlength">
             Description can be max 255 characters long
@@ -49,8 +46,7 @@
       <div *ngIf="css_color.errors">
         <div
           *ngIf="css_color.errors && isValidForm !== null && !isValidForm"
-          [ngClass]="'error'"
-        >
+          [ngClass]="'error'">
           <div *ngIf="css_color.errors.required">Css color is required</div>
           <div *ngIf="css_color.errors.maxlength">
             Css color can be max 7 characters long

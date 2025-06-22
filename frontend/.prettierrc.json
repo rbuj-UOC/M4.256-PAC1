@@ -7,7 +7,8 @@
     {
       "files": "*.html",
       "options": {
-        "parser": "angular"
+        "parser": "angular",
+        "bracketSameLine": true
       }
     }
   ]

@@ -11,8 +11,7 @@
       <div *ngIf="title.errors">
         <div
           *ngIf="title.errors && isValidForm !== null && !isValidForm"
-          [ngClass]="'error'"
-        >
+          [ngClass]="'error'">
           <div *ngIf="title.errors.required">Title is required</div>
           <div *ngIf="title.errors.maxlength">
             Title can be max 55 characters long
@@ -28,8 +27,7 @@
       <div *ngIf="description.errors">
         <div
           *ngIf="description.errors && isValidForm !== null && !isValidForm"
-          [ngClass]="'error'"
-        >
+          [ngClass]="'error'">
           <div *ngIf="description.errors.required">Description is required</div>
           <div *ngIf="description.errors.maxlength">
             Description can be max 255 characters long
@@ -47,8 +45,7 @@
           *ngIf="
             publication_date.errors && isValidForm !== null && !isValidForm
           "
-          [ngClass]="'error'"
-        >
+          [ngClass]="'error'">
           <div *ngIf="publication_date.errors.required">
             Publication Date is required
           </div>
