@@ -7,7 +7,7 @@
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <div class="field">
       <label for="email">Email: </label>
-      <input type="email" [formControl]="email" />
+      <input id="email" type="email" [formControl]="email" />
       @if (email.errors && (email.touched || email.dirty)) {
         <div>
           @if (email.errors.required) {
@@ -21,7 +21,7 @@
 
     <div class="field">
       <label for="password">Password: </label>
-      <input type="password" [formControl]="password" />
+      <input id="password" type="password" [formControl]="password" />
       @if (password.errors && (password.touched || password.dirty)) {
         <div>
           @if (password.errors.required) {
