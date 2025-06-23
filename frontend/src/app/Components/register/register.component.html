@@ -7,7 +7,11 @@
   <form [formGroup]="registerForm" (ngSubmit)="register()">
     <div class="field">
       <label for="name">Name: </label>
-      <input id="name" type="text" [formControl]="name" />
+      <input
+        id="name"
+        type="text"
+        autocomplete="given-name"
+        [formControl]="name" />
       @if (name.errors && isValidForm !== null && !isValidForm) {
         <div [ngClass]="'error'">
           @if (name.errors.required) {
@@ -23,7 +27,11 @@
 
     <div class="field">
       <label for="surname_1">Surname1: </label>
-      <input id="surname_1" type="text" [formControl]="surname_1" />
+      <input
+        id="surname_1"
+        type="text"
+        autocomplete="family-name"
+        [formControl]="surname_1" />
       @if (surname_1.errors && isValidForm !== null && !isValidForm) {
         <div [ngClass]="'error'">
           @if (surname_1.errors.required) {
@@ -53,7 +61,11 @@
 
     <div class="field">
       <label for="alias">Alias: </label>
-      <input id="alias" type="text" [formControl]="alias" />
+      <input
+        id="alias"
+        type="text"
+        autocomplete="nickname"
+        [formControl]="alias" />
       @if (alias.errors && isValidForm !== null && !isValidForm) {
         <div [ngClass]="'error'">
           @if (alias.errors.required) {
@@ -69,7 +81,11 @@
 
     <div class="field">
       <label for="birth_date">Birth Date: </label>
-      <input id="birth_date" type="date" [formControl]="birth_date" />
+      <input
+        id="birth_date"
+        type="date"
+        autocomplete="bday"
+        [formControl]="birth_date" />
       @if (birth_date.errors && isValidForm !== null && !isValidForm) {
         <div [ngClass]="'error'">
           @if (birth_date.errors.required) {
@@ -81,7 +97,11 @@
 
     <div class="field">
       <label for="email">Email: </label>
-      <input id="email" type="email" [formControl]="email" />
+      <input
+        id="email"
+        type="email"
+        autocomplete="email"
+        [formControl]="email" />
       @if (email.errors && isValidForm !== null && !isValidForm) {
         <div [ngClass]="'error'">
           @if (email.errors.required) {
@@ -95,7 +115,11 @@
 
     <div class="field">
       <label for="password">Password: </label>
-      <input id="password" type="password" [formControl]="password" />
+      <input
+        id="password"
+        type="password"
+        autocomplete="new-password"
+        [formControl]="password" />
       @if (password.errors && isValidForm !== null && !isValidForm) {
         <div [ngClass]="'error'">
           @if (password.errors.required) {
