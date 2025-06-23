@@ -1,5 +1,5 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   UntypedFormBuilder,
   UntypedFormControl,
@@ -22,6 +22,14 @@ import { SharedService } from '../../../Services/shared.service';
   styleUrls: ['./post-form.component.scss']
 })
 export class PostFormComponent implements OnInit {
+  private activatedRoute = inject(ActivatedRoute);
+  private postService = inject(PostService);
+  private formBuilder = inject(UntypedFormBuilder);
+  private router = inject(Router);
+  private sharedService = inject(SharedService);
+  private localStorageService = inject(LocalStorageService);
+  private categoryService = inject(CategoryService);
+
   user_categories!: CategoryDTO[] | undefined;
   post: PostDTO | undefined;
   title: UntypedFormControl;
@@ -36,15 +44,7 @@ export class PostFormComponent implements OnInit {
   private validRequest: boolean;
   private postId: string | null;
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private postService: PostService,
-    private formBuilder: UntypedFormBuilder,
-    private router: Router,
-    private sharedService: SharedService,
-    private localStorageService: LocalStorageService,
-    private categoryService: CategoryService
-  ) {
+  constructor() {
     this.isValidForm = null;
     this.postId = this.activatedRoute.snapshot.paramMap.get('id');
     this.post = new PostDTO('', '', 0, 0, new Date());

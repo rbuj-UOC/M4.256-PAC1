@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { HeaderMenus } from '../../Models/header-menus.dto';
 import { PostDTO } from '../../Models/post.dto';
@@ -15,16 +15,16 @@ import { SharedService } from '../../Services/shared.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  private postService = inject(PostService);
+  private localStorageService = inject(LocalStorageService);
+  private sharedService = inject(SharedService);
+  private router = inject(Router);
+  private headerMenusService = inject(HeaderMenusService);
+
   posts!: PostDTO[] | undefined;
   showButtons: boolean;
 
-  constructor(
-    private postService: PostService,
-    private localStorageService: LocalStorageService,
-    private sharedService: SharedService,
-    private router: Router,
-    private headerMenusService: HeaderMenusService
-  ) {
+  constructor() {
     this.showButtons = false;
     this.loadPosts();
   }

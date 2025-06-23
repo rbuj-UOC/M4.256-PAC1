@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { PostService } from '../../Services/post.service';
 import { SharedService } from '../../Services/shared.service';
 
@@ -10,14 +10,14 @@ import { SharedService } from '../../Services/shared.service';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
+  private postService = inject(PostService);
+  private sharedService = inject(SharedService);
+
   isValidForm: boolean | null;
   total_likes: number;
   total_dislikes: number;
 
-  constructor(
-    private postService: PostService,
-    private sharedService: SharedService
-  ) {
+  constructor() {
     this.isValidForm = null;
     this.total_likes = 0;
     this.total_dislikes = 0;

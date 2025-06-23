@@ -1,5 +1,5 @@
 import { formatDate } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -21,6 +21,12 @@ import { UserService } from '../../Services/user.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+  private formBuilder = inject(UntypedFormBuilder);
+  private userService = inject(UserService);
+  private sharedService = inject(SharedService);
+  private headerMenusService = inject(HeaderMenusService);
+  private router = inject(Router);
+
   registerUser: UserDTO;
 
   name: FormControl;
@@ -34,13 +40,7 @@ export class RegisterComponent {
   registerForm: FormGroup;
   isValidForm: boolean | null;
 
-  constructor(
-    private formBuilder: UntypedFormBuilder,
-    private userService: UserService,
-    private sharedService: SharedService,
-    private headerMenusService: HeaderMenusService,
-    private router: Router
-  ) {
+  constructor() {
     this.registerUser = new UserDTO('', '', '', '', new Date(), '', '');
     this.isValidForm = null;
     this.name = new FormControl(this.registerUser.name, [

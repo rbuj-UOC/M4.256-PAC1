@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-inferrable-types */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   UntypedFormBuilder,
   UntypedFormControl,
@@ -20,6 +20,13 @@ import { SharedService } from '../../../Services/shared.service';
   styleUrls: ['./category-form.component.scss']
 })
 export class CategoryFormComponent implements OnInit {
+  private activatedRoute = inject(ActivatedRoute);
+  private categoryService = inject(CategoryService);
+  private formBuilder = inject(UntypedFormBuilder);
+  private router = inject(Router);
+  private sharedService = inject(SharedService);
+  private localStorageService = inject(LocalStorageService);
+
   category: CategoryDTO | undefined;
   title: UntypedFormControl;
   description: UntypedFormControl;
@@ -32,14 +39,7 @@ export class CategoryFormComponent implements OnInit {
   private validRequest: boolean;
   private categoryId: string | null;
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private categoryService: CategoryService,
-    private formBuilder: UntypedFormBuilder,
-    private router: Router,
-    private sharedService: SharedService,
-    private localStorageService: LocalStorageService
-  ) {
+  constructor() {
     this.isValidForm = null;
     this.categoryId = this.activatedRoute.snapshot.paramMap.get('id');
     this.category = new CategoryDTO('', '', '');

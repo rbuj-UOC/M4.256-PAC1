@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { CategoryDTO } from '../Models/category.dto';
 
@@ -11,10 +11,12 @@ interface deleteResponse {
   providedIn: 'root'
 })
 export class CategoryService {
+  private http = inject(HttpClient);
+
   private urlBlogUocApi: string;
   private controller: string;
 
-  constructor(private http: HttpClient) {
+  constructor() {
     this.controller = 'categories';
     this.urlBlogUocApi = environment.apiUrl + '/' + this.controller;
   }

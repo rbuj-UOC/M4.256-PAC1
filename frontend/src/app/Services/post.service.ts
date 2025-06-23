@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { NONE_TYPE } from '@angular/compiler';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { PostDTO } from '../Models/post.dto';
 
@@ -16,10 +16,12 @@ interface deleteResponse {
   providedIn: 'root'
 })
 export class PostService {
+  private http = inject(HttpClient);
+
   private urlBlogUocApi: string;
   private controller: string;
 
-  constructor(private http: HttpClient) {
+  constructor() {
     this.controller = 'posts';
     this.urlBlogUocApi = environment.apiUrl + '/' + this.controller;
   }

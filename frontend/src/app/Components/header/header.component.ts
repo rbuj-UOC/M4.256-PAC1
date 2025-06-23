@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { HeaderMenus } from '../../Models/header-menus.dto';
 import { HeaderMenusService } from '../../Services/header-menus.service';
@@ -12,14 +12,14 @@ import { LocalStorageService } from '../../Services/local-storage.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  private router = inject(Router);
+  private headerMenusService = inject(HeaderMenusService);
+  private localStorageService = inject(LocalStorageService);
+
   showAuthSection: boolean;
   showNoAuthSection: boolean;
 
-  constructor(
-    private router: Router,
-    private headerMenusService: HeaderMenusService,
-    private localStorageService: LocalStorageService
-  ) {
+  constructor() {
     this.showAuthSection = false;
     this.showNoAuthSection = true;
   }

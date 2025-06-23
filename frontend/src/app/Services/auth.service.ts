@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { AuthDTO } from '../Models/auth.dto';
 
@@ -12,10 +12,12 @@ interface AuthToken {
   providedIn: 'root'
 })
 export class AuthService {
+  private http = inject(HttpClient);
+
   private urlBlogUocApi: string;
   private controller: string;
 
-  constructor(private http: HttpClient) {
+  constructor() {
     this.controller = 'auth';
     this.urlBlogUocApi = environment.apiUrl + '/' + this.controller;
   }

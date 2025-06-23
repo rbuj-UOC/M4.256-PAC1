@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { UserDTO } from '../Models/user.dto';
 
@@ -7,10 +7,12 @@ import { UserDTO } from '../Models/user.dto';
   providedIn: 'root'
 })
 export class UserService {
+  private http = inject(HttpClient);
+
   private urlBlogUocApi: string;
   private controller: string;
 
-  constructor(private http: HttpClient) {
+  constructor() {
     this.controller = 'users';
     this.urlBlogUocApi = environment.apiUrl + '/' + this.controller;
   }

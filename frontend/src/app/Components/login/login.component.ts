@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -21,19 +21,19 @@ import { SharedService } from '../../Services/shared.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  private formBuilder = inject(UntypedFormBuilder);
+  private authService = inject(AuthService);
+  private sharedService = inject(SharedService);
+  private headerMenusService = inject(HeaderMenusService);
+  private localStorageService = inject(LocalStorageService);
+  private router = inject(Router);
+
   loginUser: AuthDTO;
   email: FormControl;
   password: FormControl;
   loginForm: FormGroup;
 
-  constructor(
-    private formBuilder: UntypedFormBuilder,
-    private authService: AuthService,
-    private sharedService: SharedService,
-    private headerMenusService: HeaderMenusService,
-    private localStorageService: LocalStorageService,
-    private router: Router
-  ) {
+  constructor() {
     this.loginUser = new AuthDTO('', '', '', '');
 
     this.email = new FormControl(this.loginUser.email, [
