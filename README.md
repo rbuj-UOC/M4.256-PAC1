@@ -9,6 +9,7 @@
 ## backend
 En la carpeta *backend* hi ha els fitxers necessaris per a executar la base de dades i el *backend* en contenidors *Docker*.
 ```
+git submodule update --init --recursive
 cd backend
 ./start.sh
 ```
