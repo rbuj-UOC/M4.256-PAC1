@@ -1,4 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { HeaderMenus } from '../../Models/header-menus.dto';
 import { PostDTO } from '../../Models/post.dto';
@@ -12,6 +17,7 @@ import { SharedService } from '../../Services/shared.service';
   // eslint-disable-next-line @angular-eslint/prefer-standalone
   standalone: false,
   templateUrl: './home.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {

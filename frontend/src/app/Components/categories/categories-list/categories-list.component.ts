@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { CategoryDTO } from '../../../Models/category.dto';
 import { CategoryService } from '../../../Services/category.service';
@@ -10,6 +10,7 @@ import { SharedService } from '../../../Services/shared.service';
   // eslint-disable-next-line @angular-eslint/prefer-standalone
   standalone: false,
   templateUrl: './categories-list.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./categories-list.component.scss']
 })
 export class CategoriesListComponent {

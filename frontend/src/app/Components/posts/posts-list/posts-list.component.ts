@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { PostDTO } from '../../../Models/post.dto';
 import { LocalStorageService } from '../../../Services/local-storage.service';
@@ -10,6 +10,7 @@ import { SharedService } from '../../../Services/shared.service';
   // eslint-disable-next-line @angular-eslint/prefer-standalone
   standalone: false,
   templateUrl: './posts-list.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./posts-list.component.scss']
 })
 export class PostsListComponent {

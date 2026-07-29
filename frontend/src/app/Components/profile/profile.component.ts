@@ -1,5 +1,10 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -16,6 +21,7 @@ import { UserService } from '../../Services/user.service';
   // eslint-disable-next-line @angular-eslint/prefer-standalone
   standalone: false,
   templateUrl: './profile.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {

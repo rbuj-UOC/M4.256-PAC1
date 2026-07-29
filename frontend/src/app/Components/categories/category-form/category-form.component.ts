@@ -1,5 +1,10 @@
 /* eslint-disable @typescript-eslint/no-inferrable-types */
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import {
   UntypedFormBuilder,
   UntypedFormControl,
@@ -17,6 +22,7 @@ import { SharedService } from '../../../Services/shared.service';
   // eslint-disable-next-line @angular-eslint/prefer-standalone
   standalone: false,
   templateUrl: './category-form.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./category-form.component.scss']
 })
 export class CategoryFormComponent implements OnInit {

@@ -1,5 +1,10 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  inject,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import {
   UntypedFormBuilder,
   UntypedFormControl,
@@ -19,6 +24,7 @@ import { SharedService } from '../../../Services/shared.service';
   // eslint-disable-next-line @angular-eslint/prefer-standalone
   standalone: false,
   templateUrl: './post-form.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./post-form.component.scss']
 })
 export class PostFormComponent implements OnInit {
