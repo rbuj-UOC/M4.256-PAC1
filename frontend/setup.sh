@@ -8,6 +8,7 @@ npx @angular/cli@latest new ${PROJECT_NAME} --no-strict --standalone=false --sty
 cd ${PROJECT_NAME}
 ng add @angular-eslint/schematics --defaults --skip-confirmation
 npm install --save-dev prettier prettier-eslint eslint-config-prettier eslint-plugin-prettier
+npm install --save-dev htmlhint
 
 # overwrite / create config files
 cat << EOF > eslint.config.js
